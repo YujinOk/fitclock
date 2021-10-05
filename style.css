@@ -1,0 +1,30 @@
+* {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+}
+body {
+    background-color: black;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8%;
+    color: white;
+}
+
+.timer {
+    font-size: 200px;
+}
+.button__container {
+    display: flex;
+    justify-content: space-around;
+}
+
+button {
+    border-radius: 10%;
+    width: 80px;
+    height: 50px;
+    background-color: hotpink;
+}
