@@ -1,5 +1,5 @@
 "use strict";
-const timer = document.querySelector(".timer");
+const timerScreen = document.querySelector(".timer");
 const resetBtn = document.querySelector("#reset");
 const stopBtn = document.querySelector("#stop");
 const pauseBtn = document.querySelector("#pause");
@@ -17,20 +17,51 @@ const soundBtn = document.querySelector("#soundEffect");
 // 8. REPS: how many reps
 // 8. DURATION: how long you want to exercie per session?
 
-function stopWatch() {
-    const date = new Date();
-    const hours = date.getHours();
-    const minute = date.getMinutes();
-    const second = date.getSeconds();
-    timer.innerText = `${hours}: ${minute}: ${second}`;
-    setInterval(stopWatch, 1000);
-}
+let time = 60;
+let isTimerStop = false;
 
-const stop = () => {
-    timer.innerText = "00:00:00";
-    clearInterval(stopWatch, 1000);
+const getTimer = () => {
+    isTimerStop = false;
+    const count = setInterval(() => {
+        if (isTimerStop) {
+            clearInterval(count);
+            timerScreen.innerText = time;
+        } else {
+            time--;
+        }
+        timerScreen.innerText = time;
+    }, 1000);
 };
 
-startBtn.addEventListener("click", stopWatch);
+const stop = () => {
+    isTimerStop = true;
+};
+
+startBtn.addEventListener("click", getTimer);
 
 stopBtn.addEventListener("click", stop);
+
+// function startTimer(duration, display) {
+//     let timer = duration,
+//         minutes,
+//         seconds;
+//     setInterval(function () {
+//         minutes = parseInt(timer / 60, 10);
+//         seconds = parseInt(timer % 60, 10);
+
+//         minutes = minutes < 10 ? "0" + minutes : minutes;
+//         seconds = seconds < 10 ? "0" + seconds : seconds;
+
+//         display.textContent = minutes + ":" + seconds;
+
+//         if (--timer < 0) {
+//             timer = duration;
+//         }
+//     }, 1000);
+// }
+
+// window.onload = function () {
+//     var fiveMinutes = 60 * 5,
+//         display = document.querySelector("#time");
+//     startTimer(fiveMinutes, display);
+// };
